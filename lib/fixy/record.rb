@@ -141,9 +141,8 @@ module Fixy
         current_record += 1
       end
 
-      #old -->  Documentation mandates that every record ends with new line.
-      # needs to use the new @line_ending variable in order to support custom line endings
-      output << @line_ending
+      # Documentation mandates that every record ends with new line.
+      output << line_ending
 
       # All ready. In the words of Mr. Peters: "Take it and go!"
       decorator.record(output)
@@ -161,9 +160,5 @@ module Fixy
       self.class.record_fields
     end
 
-    # Retrieves the line ending for this record type
-    def line_ending
-      self.class.line_ending
-    end
   end
 end
