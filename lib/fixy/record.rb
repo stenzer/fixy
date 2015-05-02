@@ -155,10 +155,5 @@ module Fixy
       send("format_#{type}".to_sym, value, size)
     end
 
-    # Retrieves the list of record fields that were set through the class methods.
-    def record_fields
-      self.class.record_fields
-    end
-
   end
 end
