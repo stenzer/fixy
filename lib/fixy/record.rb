@@ -112,7 +112,8 @@ module Fixy
         end
 
         # Documentation mandates that every record ends with new line.
-        output << line_ending
+     output << LINE_ENDING_CRLF # Hardcoded for our needs, the code that makes this part work still is broken
+
 
         { fields: fields, record: decorator.record(output) }
       end
@@ -142,7 +143,10 @@ module Fixy
       end
 
       # Documentation mandates that every record ends with new line.
-      output << line_ending
+    #  output << line_ending
+      output << LINE_ENDING_CRLF # Hardcoded for our needs, the code that makes this part work still is broken
+                                 # Fixy's docs say to use "  set_line_ending Fixy::Record::LINE_ENDING_CRLF", but it's not working yet
+                                 # in other words, this is an expedient patch, just until Fixy's fixed
 
       # All ready. In the words of Mr. Peters: "Take it and go!"
       decorator.record(output)
@@ -155,5 +159,14 @@ module Fixy
       send("format_#{type}".to_sym, value, size)
     end
 
+    # Retrieves the list of record fields that were set through the class methods.
+    def record_fields
+      self.class.record_fields
+    end
+
+    # Retrieves the line ending for this record type
+    def line_ending
+      self.class.line_ending
+    end
   end
 end
